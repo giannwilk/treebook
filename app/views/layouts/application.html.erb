@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Treebook</title>
+  <title>DevBook -A Gathering for Developers-</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a href="#" class="brand pull-left"> DevBook</a>
+				<form class="navbar-search pull-right">
+					<ul class="nav">
+						<li><%= link_to "All Statuses", statuses_path %></li>
+						<input type="text" class="search-query" placeholder="Search Me!"></form> 		
+					 		
+					 		
+			</div>
+		</div>	 		
+	</div>
+			<div class="container">	 		
+			<div class=" page-header">
+				<h1> Devbook <small>a Social Gathering for Developers</small></h1>
+			</div>
+			
+				<%= yield %>
+				<hr class="featurette-divider">
 
-<%= yield %>
+
+			<em>footer</em>
+	</div>
 
 </body>
 </html>
