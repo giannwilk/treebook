@@ -10,13 +10,21 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a href="#" class="brand pull-left"> DevBook</a>
-				<form class="navbar-search pull-right">
+				<a href="#" class="brand"> DevBook</a>
 					<ul class="nav">
-						<li><%= link_to "All Statuses", statuses_path %></li>
-						<input type="text" class="search-query" placeholder="Search Me!"></form> 		
-					 		
-					 		
+						<li><%= link_to "All Statuses", statuses_path %></li>		
+					</ul>
+					<ul class="nav pull-right"> 
+					    <% if user_signed_in? %>
+							<li> <%= link_to current_user.full_name,
+							 edit_user_registration_path %></li>
+							<li><%= link_to "Log Out", destroy_user_session_path, method:  
+							:delete %></li>
+						<% else %>
+							<li> <%= link_to "Register", new_user_registration_path %></li>
+							<li> <%= link_to "Log in", new_user_session_path %></li>		
+						<% end %>
+					</ul>	 					 		
 			</div>
 		</div>	 		
 	</div>
