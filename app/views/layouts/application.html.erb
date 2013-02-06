@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DevBook -A Gathering for Developers-</title>
+  <title>DevBook</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,37 +11,27 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a href="#" class="brand"> DevBook</a>
-					<ul class="nav">
-						<li><%= link_to "All Statuses", statuses_path %></li>		
-					</ul>
-					<ul class="nav pull-right"> 
-					    <% if user_signed_in? %>
-							<li> <%= link_to current_user.full_name,
-							 edit_user_registration_path %></li>
-							<li><%= link_to "Log Out", destroy_user_session_path, method:  
-							:delete %></li>
-						<% else %>
-							<li> <%= link_to "Register", new_user_registration_path %></li>
-							<li> <%= link_to "Log in", new_user_session_path %></li>		
-						<% end %>
-					</ul>	 					 		
+				<ul class="nav">
+					<li><%= link_to "All Statuses", statuses_path %></li>
+				</ul>
+				<ul class="nav pull-right">
+					<% if user_signed_in? %>
+						<li><%= link_to current_user.full_name, edit_user_registration_path %></li>
+						<li><%= link_to "Log Out", destroy_user_session_path, method: :delete %><li>
+					<% else %>
+						<li><%= link_to "Register", new_user_registration_path %></li>
+						<li><%= link_to "Log in", new_user_session_path %></li>
+					<% end %>
+
+				</ul>
 			</div>
-		</div>	 		
+		</div>
 	</div>
-			<div class="container">	 		
-			<div class=" page-header">
-				<h1> Devbook <small>a Social Gathering for Developers</small></h1>
-			</div>
-			<div class="container">
-			<p class="notice"><%= notice %></p>
-    		<p class="alert"><%= alert %></p>
-				<%= yield %>
-			</div>
-				<hr class="featurette-divider">
+	<div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-
-			<em>footer</em>
+		<%= yield %>
 	</div>
-
 </body>
 </html>
