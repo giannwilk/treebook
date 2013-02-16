@@ -10,17 +10,17 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a href="#" class="brand"> DevBook</a>
+				<a href="#" class="brand">DevBook</a>
 				<ul class="nav">
-					<li><%= link_to "All Statuses", statuses_path %></li>
+					<li><%= link_to "All Statuses", feed_path %></li>
 				</ul>
 				<ul class="nav pull-right">
 					<% if user_signed_in? %>
 						<li><%= link_to current_user.full_name, edit_user_registration_path %></li>
-						<li><%= link_to "Log Out", destroy_user_session_path, method: :delete %><li>
+						<li><%= link_to "Log Out", logout_path, %><li>
 					<% else %>
-						<li><%= link_to "Register", new_user_registration_path %></li>
-						<li><%= link_to "Log in", new_user_session_path %></li>
+						<li><%= link_to "Register", register_path %></li>
+						<li><%= link_to "Log in", login_path %></li>
 					<% end %>
 
 				</ul>
@@ -28,20 +28,12 @@
 		</div>
 	</div>
 	<div class="container">
-    	<% if flash[:notice] %>
-    		<div class="alert alert-success">
-    			<button class="close" data-dismiss="alert">x</button>
-    			<%= flash[:notice] %>
-    		</div>
-    	<% end %>
-    	
-    	
-    	<% if flash[:alert] %>
-    		<div class="alert alert-error">
-    			<button class="close" data-dismiss="alert">x</button>
-    			<%= flash[:alert] %>
-    		</div>
-    	<% end %>
+    	<% flash.each do |type, message| %>
+			<div class="alert <%= flash_class type %>">
+				<button class="close" data-dismiss="alert">×</button>
+				<%= message %>
+			</div>
+		<% end %>
 
 		<%= yield %>
 	</div>
