@@ -11,7 +11,7 @@ Treebook::Application.routes.draw do
 
   resources :statuses
   get 'feed', to: 'statuses#index', as: :feed
-  root to: 'devise/sessions#new'
+  root to: 'statuses#index'
 
   get '/:id', to: 'profiles#show'
 
