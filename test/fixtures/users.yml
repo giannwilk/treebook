@@ -3,3 +3,10 @@ giann:
   last_name: "Wilkerson"
   email: "giannwilk@gmail.com"
   profile_name: "giannwilk"
+
+
+john:
+  first_name: "john"
+  last_name: "Barton"
+  email: "giann_wilkerson@belk.com"
+  profile_name: "jbarton"
