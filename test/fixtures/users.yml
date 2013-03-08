@@ -10,3 +10,10 @@ john:
   last_name: "Barton"
   email: "giann_wilkerson@belk.com"
   profile_name: "jbarton"
+
+
+brian:
+  first_name: "brian"
+  last_name: "jet"
+  email: "brian_jet@gmail.com"
+  profile_name: "bjet"
