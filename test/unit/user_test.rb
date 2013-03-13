@@ -41,8 +41,8 @@ class UserTest < ActiveSupport::TestCase
     assert !user.save
     assert !user.errors[:profile_name].empty?
     assert user.errors[:profile_name].include?("Must be formatted correctly.")
-  end
-
+  end 
+   
 
   test "a user should have a profile name" do
     user = User.new(first_name: 'Giann', last_name: 'Wilkerson', email: 'giannwilk@gmail.com')
@@ -56,5 +56,11 @@ class UserTest < ActiveSupport::TestCase
     assert_nothing_raised do
       users(:giann).friends
     end
+  end
+
+  test "that creating friendships on a user works" do
+    users(:giann).friends << users(:brian)
+    users(:giann).friends.reload
+    assert users(:giann).friends.include?(users(:brian))
   end
 end

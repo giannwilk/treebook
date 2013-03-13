@@ -13,6 +13,7 @@ end
 
 
 test "that creating a friendship based on user id and friend id works" do
-	UserFriendship.create user_id: users(:giann)
+	UserFriendship.create user_id: users(:giann).id, friend_id: users(:brian).id
+	assert users(:giann).friends.include?(users(:brian))
 
 end
