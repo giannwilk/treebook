@@ -25,19 +25,37 @@ class UserFriendshipsControllerTest < ActionController::TestCase
         assert_equal "Friend required", flash[:error]
       end
 
+        should "assign a new user friendship" do
+        get :new, friend_id: users(:john)
+        assert assigns(:user_friendship)
+      end
+
+
+        should "assign a new user friendship to the correct friend" do
+        get :new, friend_id: users(:john)
+        assert_equal users(:john), assigns(:user_friendship).friend
+         end
+
+
+       should "assign a new user friendship to the currently logged in user" do
+        get :new, friend_id: users(:john)
+        assert_equal users(:giann), assigns(:user_friendship).user
+      end
+
+
       should "display a 404 page if no friend is found" do
         get :new, friend_id: 'invalid'
         assert_response :not_found
       end
 
 
-      should " ask if you really want to friend the user"
+      should "ask if you really want to friend the user" do
            get :new, friend_id: user(:john)
            assert_match /Do you really want to friend #{user(:john).full_name}?/, response.body
         end   
 
       should "display the friend's name" do
-        get :new, friend_id: users(:).id
+        get :new, friend_id: users(:john)
         assert_match /#{users(:john).full_name}/, response.body
       end
 
@@ -105,8 +123,6 @@ class UserFriendshipsControllerTest < ActionController::TestCase
           assert users(:giann).friends.include?(users(:brian))
         end
       end
-
-
     end
   end
 end
