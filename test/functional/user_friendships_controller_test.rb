@@ -9,6 +9,10 @@ class UserFriendshipsControllerTest < ActionController::TestCase
         assert_redirected_to login_path
       end
     end
+       should "assign a friend" do
+        get :new, friend_id: users(:john).id
+       assert assigns(:user_friendship)
+      end
 
     context "when logged in" do
       setup do
@@ -60,17 +64,17 @@ class UserFriendshipsControllerTest < ActionController::TestCase
       end
 
       should "assign a user friendship" do
-        get :new, friend_id: users(:john).id
+        get :new, friend_id: users(:john)
         assert assigns(:user_friendship)
       end
 
       should "assign a user friendship with the user as current user" do
-        get :new, friend_id: users(:john).id
+        get :new, friend_id: users(:john)
         assert_equal assigns(:user_friendship).user, users(:giann)
       end
 
       should "assign a user friendship with the correct friend" do
-        get :new, friend_id: users(:john).id
+        get :new, friend_id: users(:john)
         assert_equal assigns(:user_friendship).friend, users(:john)
       end
     end
@@ -106,7 +110,7 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 
       context "with a valid friend_id" do
         setup do
-          post :create, friend_id: users(:brian).id
+          post :create,user_friendship: {friend_id: users(:brian)}
         end
 
         should "assign a friend object" do
@@ -121,6 +125,17 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 
         should "create a user friendship" do
           assert users(:giann).friends.include?(users(:brian))
+        end
+
+        should "redirect to the profile page of the friend" do
+          assert_response :redirect
+          assert_redirected_to profile_path(users(:brian))
+        end
+
+
+        should "set the flash success message" do
+          assert flash[:success]
+          assert_equal "You are now friends with #{users(:brian).full_name}", flash[:success]
         end
       end
     end

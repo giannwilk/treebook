@@ -3,6 +3,7 @@ giann:
   last_name: "Wilkerson"
   email: "giannwilk@gmail.com"
   profile_name: "giannwilk"
+  encrypted_password: $2a$10$Fh/Hm8RxDsuPTeBUr6864.GARlcmt7zF2WspaXGr3BIv2C27N.osq
 
 
 john:

@@ -1,11 +1,9 @@
- class UserFriendshipsController < ApplicationController
+class UserFriendshipsController < ApplicationController
   before_filter :authenticate_user!, only: [:new]
 
   def new
     if params[:friend_id]
-      @friend = User.where(profile_name: params[:friend_id]).first
-      logger.info "Trying to find a friend:"
-      logger.info @friend
+      @friend = User.find(params[:friend_id])
       @user_friendship = current_user.user_friendships.new(friend: @friend)
     else
       flash[:error] = "Friend required"
